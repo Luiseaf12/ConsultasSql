@@ -1,0 +1,16 @@
+import pandas as pd
+from sqlalchemy import create_engine
+
+# Crear engine
+engine = create_engine('mssql+pyodbc://lecturaAPP:S1stem%40s@PCSISTEMASJGC22\\SQL14/FABRICA_PASSA?driver=SQL+Server')
+
+# Consulta
+query = "SELECT count(*) FROM CATCTES WHERE status = 'A'"
+df = pd.read_sql(query, engine)
+#print(df)
+print(df.iloc[0,0])# Obtiene el valor en la primera fila, primera columna
+
+
+# Consulta con parámetros
+#query = "SELECT cod_cte, nom_cte FROM CATCTES WHERE estatus = ?"
+#df = pd.read_sql(query, conn, params=['A'])
